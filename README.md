@@ -1,2 +1,1 @@
-# wooliesx
-Wooliesx coding challenge
+# Wooliesx API coding exercise
