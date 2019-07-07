@@ -1,7 +1,4 @@
 {
-  "presets": ["es2015", "stage-3"],
-  "plugins": [
-    "syntax-async-functions",
-    "dot-dot-slash"
-  ]
+  "presets": ["@babel/preset-env"],
+  "plugins": ["@babel/plugin-proposal-async-generator-functions"]
 }
