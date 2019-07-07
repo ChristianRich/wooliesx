@@ -24,7 +24,7 @@ app.get('/api/answers/user', (req, res) => {
   } catch (e) {
     res.json({
       message: e.message,
-      status: e.status || 500,
+      status: e.statusCode || 500,
     })
   }
 })
@@ -35,12 +35,25 @@ app.get('/api/answers/sort', async (req, res) => {
     const service = new WooliesService()
     const sortOption = get(req, 'query.sortOption', '').toLowerCase()
     const result = await service.sortProducts(sortOption)
-
     res.json(result)
   } catch (e) {
     res.json({
       message: e.message,
-      status: e.status || 500,
+      status: e.statusCode || 500,
+    })
+  }
+})
+
+// Exercise 3
+app.post('/api/answers/trolleyTotal', async (req, res) => {
+  try {
+    const service = new WooliesService()
+    const total = await service.calculateTrolleyTotal(req.body)
+    res.end(total.toString())
+  } catch (e) {
+    res.json({
+      message: e.message,
+      status: e.statusCode || 500,
     })
   }
 })
