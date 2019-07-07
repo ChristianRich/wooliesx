@@ -43,4 +43,15 @@ export default class WooliesRepo {
 
     return results.map(result => new ProductModel(result))
   }
+
+  calculateTrolleyTotal(trolley) {
+    return this.http({
+      method: 'POST',
+      url: `${this.baseUrl}/trolleyCalculator?${stringify({
+        token: this.token,
+      })}`,
+      json: true,
+      body: trolley,
+    })
+  }
 }

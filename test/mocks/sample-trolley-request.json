@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "name": "Potatoes, washed 200g",
+      "price": 2.95
+    }
+  ],
+  "specials": [
+    {
+      "quantities": [
+        {
+          "name": "Potatoes, washed 200g",
+          "quantity": 1
+        }
+      ],
+      "total": 2.95
+    }
+  ],
+  "quantities": [
+    {
+      "name": "Potatoes, washed 200g",
+      "quantity": 2
+    }
+  ]
+}

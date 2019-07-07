@@ -87,4 +87,8 @@ export default class WooliesService {
       .sort((a, b) => b.popularity > a.popularity)
       .map(product => new ProductModel(product))
   }
+
+  async calculateTrolleyTotal(trolley) {
+    return this.wooliesRepo.calculateTrolleyTotal(trolley)
+  }
 }
