@@ -1,5 +1,7 @@
 import rp from 'request-promise-native'
 import { stringify } from 'qs'
+import ProductModel from '../models/product-model'
+import ShopperHistoryModel from '../models/shopper-history-model'
 
 export default class WooliesRepo {
   constructor({
@@ -13,21 +15,25 @@ export default class WooliesRepo {
     this.http = http
   }
 
-  getShopperHistory() {
-    return this.http({
+  async getShopperHistory() {
+    const results = await this.http({
       url: `${this.baseUrl}/shopperHistory?${stringify({
         token: this.token,
       })}`,
       json: true,
     })
+
+    return results.map(result => new ShopperHistoryModel(result))
   }
 
-  getProducts() {
-    return this.http({
+  async getProducts() {
+    const results = await this.http({
       url: `${this.baseUrl}/products?${stringify({
         token: this.token,
       })}`,
       json: true,
     })
+
+    return results.map(result => new ProductModel(result))
   }
 }

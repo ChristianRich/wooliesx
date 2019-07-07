@@ -1,4 +1,5 @@
 import HttpError from '../errors/http-error'
+import ProductModel from '../models/product-model'
 
 export const SORT_METHOD_LOW = 'low' // Low to high price
 export const SORT_METHOD_HIGH = 'high' // High to Low Price
@@ -20,8 +21,9 @@ export default class WooliesService {
 
   /**
    * Sort products using a pre-defined algorithm
-   * @param {string} sortOption - low, high, ascending, descending, recommended
-   * @returns {object}
+   * @param {(low|high|ascending|descending,recommended)} sortOption
+   * @param {Array.<ProductModel>} products
+   * @returns {Array.<ProductModel>} products
    */
   async sortProducts(sortOption) {
     if (!SORT_METHODS.includes(sortOption)) {
@@ -50,13 +52,34 @@ export default class WooliesService {
         return 0
       })
     } else if (sortOption === SORT_METHOD_RECOMMENDED) {
-      // TODO
-      // eslint-disable-next-line
       const shopperHistory = await this.wooliesRepo.getShopperHistory()
-      return products
+      return this.sortByPopularity(shopperHistory, products)
     }
   }
-}
 
-// - "Recommended" - this will call the "shopperHistory" resource to get a list of customers orders and needs to return based on popularity,
-// Your response will be in the same data structure as the "products" response (only sorted correctly)
+  /**
+   * Returns products sorted by shopper popularity
+   * @param {ShopperHistoryModel} shopperHistory
+   * @param {Array.<ProductModel>} products
+   * @returns {Array.<ProductModel>} products
+   */
+  sortByPopularity(shopperHistory, products) {
+    const productsByUsers = shopperHistory.reduce((acc, curr) => {
+      if (Array.isArray(curr.products)) {
+        acc.push(...curr.products)
+      }
+      return acc
+    }, [])
+
+    return products
+      .map(product => {
+        product.popularity = productsByUsers.reduce((acc, curr) => {
+          if (curr.name === product.name) acc++
+          return acc
+        }, 0)
+        return product
+      })
+      .sort((a, b) => b.popularity > a.popularity)
+      .map(product => new ProductModel(product))
+  }
+}
