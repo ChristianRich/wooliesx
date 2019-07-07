@@ -15,6 +15,13 @@ export default class WooliesRepo {
     this.http = http
   }
 
+  getUser() {
+    return {
+      name: 'test',
+      token: '1234-455662-22233333-3333',
+    }
+  }
+
   async getShopperHistory() {
     const results = await this.http({
       url: `${this.baseUrl}/shopperHistory?${stringify({

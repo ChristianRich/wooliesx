@@ -1,5 +1,6 @@
 import HttpError from '../errors/http-error'
 import ProductModel from '../models/product-model'
+import WooliesRepo from '../repos/woolies-repo'
 
 export const SORT_METHOD_LOW = 'low' // Low to high price
 export const SORT_METHOD_HIGH = 'high' // High to Low Price
@@ -15,8 +16,12 @@ export const SORT_METHODS = [
 ]
 
 export default class WooliesService {
-  constructor({ wooliesRepo }) {
+  constructor({ wooliesRepo = new WooliesRepo() } = {}) {
     this.wooliesRepo = wooliesRepo
+  }
+
+  getUser() {
+    return this.wooliesRepo.getUser()
   }
 
   /**

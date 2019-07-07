@@ -21,6 +21,7 @@
   "license": "ISC",
   "homepage": "http://chrisrich.io",
   "devDependencies": {
+    "ava": "^2.1.0",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-plugin-dot-dot-slash": "^1.0.0",
@@ -38,7 +39,6 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.17.2",
-    "cors": "^2.8.3",
     "express": "^4.15.3",
     "lodash": "^4.17.11",
     "qs": "^6.7.0",
