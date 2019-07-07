@@ -17,7 +17,7 @@ export default class WooliesRepo {
 
   getUser() {
     return {
-      name: 'test',
+      name: 'Christian Rich',
       token: '1234-455662-22233333-3333',
     }
   }
