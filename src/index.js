@@ -49,7 +49,6 @@ app.post('/api/answers/trolleyTotal', async (req, res) => {
   try {
     const service = new WooliesService()
     const total = await service.calculateTrolleyTotal(req.body)
-    console.log(JSON.stringify(req.body))
     res.end(total.toString())
   } catch (e) {
     res.json({

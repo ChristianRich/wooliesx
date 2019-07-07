@@ -128,3 +128,43 @@ Response
 ]
 ```
 
+### Exercise 3  
+
+https://wooliesx.herokuapp.com/api/answers/trolleyTotal
+
+Passed test request
+
+```shell
+curl -X POST \
+  http://dev-wooliesx-recruitment.azurewebsites.net/api/Exercise/exercise3 \
+  -H 'Accept: */*' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: dev-wooliesx-recruitment.azurewebsites.net' \
+  -H 'cache-control: no-cache' \
+  -H 'content-length: 110' \
+  -d '{  
+   "token":"e902399f-ae3a-4a9e-b066-61b3c7fd9aa0",
+   "url":"https://wooliesx.herokuapp.com/api/answers"
+}'
+```
+
+Response
+
+```json
+[  
+   {  
+      "passed":true,
+      "url":"https://wooliesx.herokuapp.com/api/answers/trolleyTotal",
+      "message":"Trolley total (232.53932101304570) returned correctly."
+   },
+   {  
+      "passed":true,
+      "url":"https://wooliesx.herokuapp.com/api/answers/trolleyTotal",
+      "message":"Trolley total (14) returned correctly."
+   }
+]
+```
+
+NOTE: There's an occational rounding issue (edge case) causing the first test to fail.
